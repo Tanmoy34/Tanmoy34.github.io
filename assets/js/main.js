@@ -230,7 +230,9 @@
    * EmailJS Contact Form Handler
    */
   (function() {
-    // Initialize EmailJS (Public Key)
+    "use strict";
+
+    // Initialize EmailJS with your Public Key
     emailjs.init("YOUR_PUBLIC_KEY");
 
     const form = document.getElementById('contactForm');
@@ -243,6 +245,7 @@
         const sentDiv = document.getElementById('sent-message');
 
         // Reset messages
+        errorDiv.textContent = '';
         errorDiv.style.display = 'none';
         sentDiv.style.display = 'none';
         loadingDiv.style.display = 'block';
