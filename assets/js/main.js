@@ -273,4 +273,43 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     console.error('EmailJS library not loaded');
   }
+
+  const contactForm = document.getElementById('contactForm');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      const loading = document.getElementById('loading');
+      const errorMessage = document.getElementById('error-message');
+      const sentMessage = document.getElementById('sent-message');
+      
+      // Reset messages
+      errorMessage.style.display = 'none';
+      sentMessage.style.display = 'none';
+      loading.style.display = 'block';
+      
+      // Handle form submission with Formspree
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        loading.style.display = 'none';
+        if (response.ok) {
+          sentMessage.style.display = 'block';
+          contactForm.reset();
+        } else {
+          errorMessage.textContent = 'Something went wrong. Please try again.';
+          errorMessage.style.display = 'block';
+        }
+      }).catch(error => {
+        loading.style.display = 'none';
+        errorMessage.textContent = 'An error occurred. Please try again.';
+        errorMessage.style.display = 'block';
+      });
+      
+      e.preventDefault();
+    });
+  }
 });
