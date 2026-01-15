@@ -226,12 +226,17 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  /**
-   * EmailJS Contact Form Handler
-   */
-  (function() {
-    "use strict";
+})();
 
+/**
+ * EmailJS Contact Form Handler
+ * Initialize after DOM is loaded
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  "use strict";
+
+  // Check if EmailJS is available
+  if (typeof emailjs !== 'undefined') {
     // Initialize EmailJS with your Public Key
     emailjs.init("cT6v-jpPup99pmTJ2");
 
@@ -265,6 +270,7 @@
           });
       });
     }
-  })();
-
-})();
+  } else {
+    console.error('EmailJS library not loaded');
+  }
+});
