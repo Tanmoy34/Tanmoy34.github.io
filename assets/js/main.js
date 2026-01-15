@@ -233,7 +233,7 @@
     "use strict";
 
     // Initialize EmailJS with your Public Key
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("cT6v-jpPup99pmTJ2");
 
     const form = document.getElementById('contactForm');
     if (form) {
@@ -251,11 +251,12 @@
         loadingDiv.style.display = 'block';
 
         // Send email using EmailJS
-        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
+        emailjs.sendForm('service_19zfvsj', 'template_3s1ytz8', form)
           .then(function(response) {
             loadingDiv.style.display = 'none';
             sentDiv.style.display = 'block';
             form.reset();
+            console.log('Email sent successfully!', response);
           }, function(error) {
             loadingDiv.style.display = 'none';
             errorDiv.style.display = 'block';
