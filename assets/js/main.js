@@ -226,4 +226,41 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * EmailJS Contact Form Handler
+   */
+  (function() {
+    // Initialize EmailJS (Public Key)
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const loadingDiv = document.getElementById('loading');
+        const errorDiv = document.getElementById('error-message');
+        const sentDiv = document.getElementById('sent-message');
+
+        // Reset messages
+        errorDiv.style.display = 'none';
+        sentDiv.style.display = 'none';
+        loadingDiv.style.display = 'block';
+
+        // Send email using EmailJS
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
+          .then(function(response) {
+            loadingDiv.style.display = 'none';
+            sentDiv.style.display = 'block';
+            form.reset();
+          }, function(error) {
+            loadingDiv.style.display = 'none';
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = 'Failed to send message. Please try again.';
+            console.error('EmailJS error:', error);
+          });
+      });
+    }
+  })();
+
 })();
