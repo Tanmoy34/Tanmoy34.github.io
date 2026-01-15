@@ -1273,3 +1273,69 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/* Floating CV Download Button */
+.floating-cv-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.floating-cv-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.floating-cv-btn span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px;
+  line-height: 1.2;
+}
+
+.floating-cv-btn:hover span {
+  opacity: 1;
+}
+
+.floating-cv-btn:hover i {
+  opacity: 0;
+}
+
+.floating-cv-btn i {
+  transition: opacity 0.3s ease;
+}
+
+/* Responsive - Stack with scroll top on mobile */
+@media (max-width: 768px) {
+  .floating-cv-btn {
+    bottom: 90px;
+    left: 20px;
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+  }
+}
