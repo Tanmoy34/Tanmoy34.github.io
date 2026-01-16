@@ -62,6 +62,7 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .certificate-card:hover .cert-overlay {
