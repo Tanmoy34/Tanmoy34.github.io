@@ -1,0 +1,220 @@
+/* Certificates Section Styles */
+.certificates.section {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.certificate-carousel-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.certificate-carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  overflow: visible;
+}
+
+.certificate-card {
+  min-width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cert-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.cert-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.certificate-card:hover .cert-image img {
+  transform: scale(1.05);
+}
+
+.cert-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.certificate-card:hover .cert-overlay {
+  opacity: 1;
+}
+
+.cert-overlay i {
+  font-size: 48px;
+  color: #fff;
+}
+
+.cert-content {
+  padding: 30px;
+  text-align: center;
+}
+
+.cert-content h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.cert-issuer {
+  color: #667eea;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.cert-date {
+  color: #7a7a7a;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Navigation Buttons */
+.cert-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.cert-prev-btn {
+  left: 0;
+}
+
+.cert-next-btn {
+  right: 0;
+}
+
+.cert-nav-btn:hover {
+  background: #667eea;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.cert-nav-btn:hover i {
+  color: #fff;
+}
+
+.cert-nav-btn i {
+  font-size: 24px;
+  color: #667eea;
+  transition: color 0.3s ease;
+}
+
+/* Dots Navigation */
+.cert-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.cert-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cert-dot:hover {
+  background: #999;
+  transform: scale(1.2);
+}
+
+.cert-dot.active {
+  background: #667eea;
+  width: 30px;
+  border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certificate-carousel-wrapper {
+    padding: 0 50px;
+  }
+
+  .cert-image {
+    height: 300px;
+  }
+
+  .cert-content h4 {
+    font-size: 18px;
+  }
+
+  .cert-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cert-nav-btn i {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .certificate-carousel-wrapper {
+    padding: 0 40px;
+  }
+
+  .cert-image {
+    height: 250px;
+  }
+
+  .cert-content {
+    padding: 20px;
+  }
+
+  .cert-content h4 {
+    font-size: 16px;
+  }
+
+  .cert-nav-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .cert-nav-btn i {
+    font-size: 18px;
+  }
+}
