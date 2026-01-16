@@ -312,4 +312,73 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
     });
   }
+
+  // Certificate Carousel Auto-Rotation
+  let certificateIndex = 0;
+  let certificateAutoRotateTimer;
+
+  function showCertificate(n) {
+    const wrappers = document.querySelectorAll('.certificate-wrapper');
+    const dots = document.querySelectorAll('.cert-dot');
+
+    if (n >= wrappers.length) {
+      certificateIndex = 0;
+    }
+    if (n < 0) {
+      certificateIndex = wrappers.length - 1;
+    }
+
+    wrappers.forEach(wrapper => wrapper.style.display = 'none');
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    if (wrappers[certificateIndex]) {
+      wrappers[certificateIndex].style.display = 'flex';
+    }
+    if (dots[certificateIndex]) {
+      dots[certificateIndex].classList.add('active');
+    }
+  }
+
+  function currentCertificate(n) {
+    clearInterval(certificateAutoRotateTimer);
+    certificateIndex = n;
+    showCertificate(certificateIndex);
+    startAutoRotate();
+  }
+
+  function nextCertificate() {
+    clearInterval(certificateAutoRotateTimer);
+    certificateIndex++;
+    showCertificate(certificateIndex);
+    startAutoRotate();
+  }
+
+  function prevCertificate() {
+    clearInterval(certificateAutoRotateTimer);
+    certificateIndex--;
+    showCertificate(certificateIndex);
+    startAutoRotate();
+  }
+
+  function startAutoRotate() {
+    certificateAutoRotateTimer = setInterval(() => {
+      certificateIndex++;
+      showCertificate(certificateIndex);
+    }, 5000);
+  }
+
+  // Initialize Certificate Carousel
+  document.addEventListener('DOMContentLoaded', function() {
+    // Certificate carousel initialization
+    const certPrevBtn = document.querySelector('.cert-prev');
+    const certNextBtn = document.querySelector('.cert-next');
+
+    if (certPrevBtn && certNextBtn) {
+      certPrevBtn.addEventListener('click', prevCertificate);
+      certNextBtn.addEventListener('click', nextCertificate);
+      
+      // Start auto rotation on page load
+      startAutoRotate();
+    }
+  });
 });

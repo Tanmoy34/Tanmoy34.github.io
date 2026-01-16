@@ -619,6 +619,17 @@
 
     </section><!-- /Services Section -->
 
+    <!-- Certificates Section -->
+    <section id="certificates" class="certificates section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Certifications</h2>
+        <p>Professional certifications and credentials I've earned from various institutions and platforms.</p>
+      </div><!-- End Section Title -->
+
+    </section><!-- /Certificates Section -->
+
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
@@ -737,6 +748,56 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    // Certificate Carousel System
+    let currentCertIndex = 0;
+    const certCards = document.querySelectorAll('.certificate-card');
+    const certDots = document.querySelectorAll('.cert-dot');
+    const carouselTrack = document.querySelector('.certificate-carousel');
+    const totalCerts = certCards.length;
+    let autoRotateTimer;
+
+    function updateCarousel() {
+      const offset = -currentCertIndex * 100;
+      carouselTrack.style.transform = `translateX(${offset}%)`;
+      
+      certDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentCertIndex);
+      });
+    }
+
+    function nextCertificate() {
+      currentCertIndex = (currentCertIndex + 1) % totalCerts;
+      updateCarousel();
+      resetAutoRotate();
+    }
+
+    function prevCertificate() {
+      currentCertIndex = (currentCertIndex - 1 + totalCerts) % totalCerts;
+      updateCarousel();
+      resetAutoRotate();
+    }
+
+    function goToCertificate(index) {
+      currentCertIndex = index;
+      updateCarousel();
+      resetAutoRotate();
+    }
+
+    function resetAutoRotate() {
+      clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(nextCertificate, 5000);
+    }
+
+    document.querySelector('.cert-next-btn').addEventListener('click', nextCertificate);
+    document.querySelector('.cert-prev-btn').addEventListener('click', prevCertificate);
+
+    // Auto-rotate every 5 seconds
+    autoRotateTimer = setInterval(nextCertificate, 5000);
+
+    // Initial display
+    updateCarousel();
+  </script>
 
 </body>
 
