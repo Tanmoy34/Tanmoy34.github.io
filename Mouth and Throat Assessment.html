@@ -127,7 +127,36 @@
               </div>
               <div class="swiper-pagination"></div>
             </div>
-          </div>
+            <!-- Video Section -->
+            <div class="portfolio-video mt-4">
+              <div class="video-container position-relative">
+                <img src="assets/img/Mouth and Throat Assessment/vlcsnap-2025-11-06-17h40m49s644.png" alt="Video Thumbnail"
+                  class="img-fluid w-100 rounded" id="videoThumbnail" style="cursor: pointer;">
+                <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" id="playButton"
+                  style="cursor: pointer;">
+                  <i class="bi bi-play-circle"
+                    style="font-size: 4rem; color: white; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));"></i>
+                </div>
+              </div>
+            
+              <!-- Inline Video Player -->
+              <div id="videoPlayer" class="mt-3" style="display: none;">
+                <video width="100%" height="auto" controls autoplay muted onerror="handleVideoError()">
+                  <source src="assets/videos/Mouth and Throat Assessment .mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            
+              <!-- Disclaimer -->
+              <div class="mt-3 p-3 bg-light border-left-4" style="border-left: 4px solid #0d6efd;">
+                <p class="mb-0 small text-muted">
+                  <strong>Disclaimer:</strong> This video is for portfolio demonstration purposes only. All content and intellectual
+                  property rights belong to MedVR Education.
+                </p>
+              </div>
+            </div>
+            </div>
+          
 
           <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
@@ -220,6 +249,27 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <!-- Video Player Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playButton = document.getElementById('playButton');
+      const videoThumbnail = document.getElementById('videoThumbnail');
+      const videoPlayer = document.getElementById('videoPlayer');
+
+      function showVideo() {
+        videoThumbnail.style.display = 'none';
+        playButton.style.display = 'none';
+        videoPlayer.style.display = 'block';
+      }
+
+      if (playButton) {
+        playButton.addEventListener('click', showVideo);
+      }
+      if (videoThumbnail) {
+        videoThumbnail.addEventListener('click', showVideo);
+      }
+    });
+  </script>
 
 </body>
 

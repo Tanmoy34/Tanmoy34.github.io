@@ -381,4 +381,35 @@ document.addEventListener('DOMContentLoaded', function() {
       startAutoRotate();
     }
   });
+
+  /**
+   * Video Demonstration Handler
+   */
+  function playVideo() {
+    const thumbnail = document.getElementById('videoThumbnail');
+    const player = document.getElementById('videoPlayer');
+    const video = document.getElementById('demoVideo');
+    
+    if (thumbnail && player && video) {
+      // Hide thumbnail, show video player
+      thumbnail.style.display = 'none';
+      player.style.display = 'block';
+      
+      // Auto-play video
+      video.play();
+      
+      // Smooth scroll to video if needed
+      player.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // Optional: Show thumbnail again when video ends
+  const demoVideo = document.getElementById('demoVideo');
+  if (demoVideo) {
+    demoVideo.addEventListener('ended', function() {
+      // Uncomment below if you want to show thumbnail again after video ends
+      // document.getElementById('videoThumbnail').style.display = 'block';
+      // document.getElementById('videoPlayer').style.display = 'none';
+    });
+  }
 });
