@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lucky Reels - Slot Machine Web Game | Tanmoy Ghatak Portfolio</title>
+  <meta name="description" content="Lucky Reels — a classic 3-reel slot machine built with vanilla HTML, CSS, and JavaScript. Part of Tanmoy Ghatak's web game portfolio.">
+  <meta name="keywords" content="slot machine, web game, HTML5, JavaScript, CSS animation, Lucky Reels, Tanmoy Ghatak">
+
+  <!-- Favicons -->
+  <link href="assets/img/Profile_img.jpeg" rel="icon">
+  <link href="assets/img/Profile_img.jpeg" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* ── THUMBNAIL CARD ── */
+    .game-thumbnail-card {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      display: block;
+      text-decoration: none;
+    }
+    .game-thumbnail-card img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .game-thumbnail-card:hover img {
+      transform: scale(1.02);
+    }
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .game-thumbnail-card:hover .thumb-overlay {
+      opacity: 1;
+    }
+    .thumb-overlay i {
+      font-size: 4.5rem;
+      color: #fff;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+    }
+
+    /* ── PLAY NOW BUTTON ── */
+    .play-now-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px 20px;
+      background: #0d6efd;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.4px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .play-now-btn:hover {
+      background: #0b5ed7;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(13, 110, 253, 0.35);
+    }
+    .play-now-btn i { font-size: 1.1rem; }
+
+    /* ── PAYTABLE ── */
+    .paytable-wrap {
+      margin-top: 28px;
+    }
+    .paytable-wrap h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .paytable {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .paytable thead th {
+      background: #f0f5ff;
+      color: #0d6efd;
+      font-weight: 700;
+      padding: 9px 14px;
+      text-align: left;
+      border-bottom: 2px solid #dde5ff;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .paytable tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+    }
+    .paytable tbody tr:hover {
+      background: #f8faff;
+    }
+    .paytable tbody td {
+      padding: 8px 14px;
+      color: #444;
+    }
+    .paytable .symbols {
+      font-size: 1.15rem;
+      letter-spacing: 2px;
+    }
+    .paytable .multiplier {
+      font-weight: 700;
+      color: #0d6efd;
+    }
+    .paytable .jackpot-row td {
+      background: #fff8e1;
+      font-weight: 700;
+    }
+    .paytable .jackpot-row .multiplier {
+      color: #e65100;
+    }
+    .badge-jackpot {
+      font-size: 0.65rem;
+      background: #e65100;
+      color: #fff;
+      padding: 2px 7px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+      font-weight: 700;
+    }
+
+    /* ── HOW TO PLAY ── */
+    .howto-steps {
+      counter-reset: step-counter;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .howto-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.5;
+    }
+    .howto-steps li:last-child { border-bottom: none; }
+    .howto-steps li::before {
+      content: counter(step-counter);
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #0d6efd;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── CONTROLS TABLE ── */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .control-block {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .control-block h5 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #0d6efd;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .key-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 0;
+    }
+    .key {
+      font-family: monospace;
+      font-size: 0.68rem;
+      padding: 3px 7px;
+      background: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      color: #333;
+      white-space: nowrap;
+      min-width: 42px;
+      text-align: center;
+      box-shadow: 0 2px 0 #adb5bd;
+    }
+    .key-desc { font-size: 0.8rem; color: #555; }
+
+    @media (max-width: 576px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <!-- ===== SIDEBAR HEADER ===== -->
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile-img">
+      <img src="assets/img/Profile_base.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Tanmoy Ghatak</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/tanmoy-ghatak-b8707a14b/" target="_blank" class="linkedin">
+        <i class="bi bi-linkedin"></i>
+      </a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About Me</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="index.html#portfolio" class="active"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i> On going projects</a></li>
+        <li><a href="index.html#certificates"><i class="bi bi-award navicon"></i> Certificates</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== PAGE TITLE ===== -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Lucky Reels - Slot Machine Web Game</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Portfolio Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ===== PORTFOLIO DETAILS SECTION ===== -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+
+          <!-- ══════════ LEFT COLUMN ══════════ -->
+          <div class="col-lg-8">
+
+            <!-- THUMBNAIL -->
+            <a href="https://tanmoy34.github.io/Slot-machine-Webgame/" target="_blank" class="game-thumbnail-card">
+              <img
+                src="assets/img/Webgame/Slotgame.png"
+                alt="Lucky Reels Slot Machine - Click to Play">
+              <div class="thumb-overlay">
+                <i class="bi bi-play-circle-fill"></i>
+              </div>
+            </a>
+
+            <!-- PLAY NOW BUTTON -->
+            <a href="https://tanmoy34.github.io/Slot-machine-Webgame/" target="_blank" class="play-now-btn">
+              <i class="bi bi-play-fill"></i>
+              Play It Now in Full Tab
+            </a>
+
+            <!-- HOW TO PLAY -->
+            <div class="mt-4">
+              <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 14px;">How to Play</h3>
+              <ol class="howto-steps">
+                <li>Start with <strong>1,000 coins</strong> — manage your balance wisely.</li>
+                <li>Use the <strong>− / +</strong> buttons to set your bet (5 to 100 coins per spin).</li>
+                <li>Press <strong>SPIN</strong> to roll the three reels simultaneously.</li>
+                <li>Match <strong>3 identical symbols</strong> across the reels to win based on the paytable multiplier.</li>
+                <li>Match <strong>any 2 symbols</strong> to recover your bet (×1 payout).</li>
+                <li>Hit <strong>💎💎💎</strong> for the <strong>50× JACKPOT</strong> — the ultimate prize!</li>
+              </ol>
+            </div>
+
+            <!-- CONTROLS -->
+            <div class="mt-4">
+              <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 14px;">Controls</h3>
+              <div class="controls-grid">
+                <div class="control-block">
+                  <h5><i class="bi bi-display"></i> Desktop</h5>
+                  <div class="key-row">
+                    <span class="key">− / +</span>
+                    <span class="key-desc">Adjust bet amount</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">SPIN</span>
+                    <span class="key-desc">Click to spin reels</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">Space</span>
+                    <span class="key-desc">Quick spin (shortcut)</span>
+                  </div>
+                </div>
+                <div class="control-block">
+                  <h5><i class="bi bi-phone"></i> Mobile</h5>
+                  <div class="key-row">
+                    <span class="key">− / +</span>
+                    <span class="key-desc">Tap to adjust bet</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">SPIN</span>
+                    <span class="key-desc">Tap to spin reels</span>
+                  </div>
+                  <div class="key-row" style="margin-top:6px;">
+                    <span style="font-size:0.72rem;color:#888;">Fully responsive layout!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PAYTABLE -->
+            <div class="paytable-wrap">
+              <h3>Paytable — Payouts (× Bet)</h3>
+              <table class="paytable">
+                <thead>
+                  <tr>
+                    <th>Combination</th>
+                    <th>Multiplier</th>
+                    <th>Label</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="jackpot-row">
+                    <td><span class="symbols">💎💎💎</span></td>
+                    <td class="multiplier">× 50</td>
+                    <td><span class="badge-jackpot">JACKPOT</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">7️⃣7️⃣7️⃣</span></td>
+                    <td class="multiplier">× 20</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">🍒🍒🍒</span></td>
+                    <td class="multiplier">× 10</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">🍋🍋🍋</span></td>
+                    <td class="multiplier">× 8</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">⭐⭐⭐</span></td>
+                    <td class="multiplier">× 6</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">🎰🎰🎰</span></td>
+                    <td class="multiplier">× 5</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">🔔🔔🔔</span></td>
+                    <td class="multiplier">× 4</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span class="symbols">🍇🍇🍇</span></td>
+                    <td class="multiplier">× 3</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><span style="font-size:0.82rem;">Any 2 matching</span></td>
+                    <td class="multiplier">× 1</td>
+                    <td>Bet returned</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div><!-- /col-lg-8 -->
+
+          <!-- ══════════ RIGHT SIDEBAR ══════════ -->
+          <div class="col-lg-4">
+
+            <!-- PROJECT INFO -->
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Category</strong>: Web Game</li>
+                <li><strong>Platform</strong>: Browser (HTML5)</li>
+                <li><strong>Engine</strong>: Vanilla JS + CSS Animations</li>
+                <li><strong>Language</strong>: JavaScript</li>
+                <li><strong>Genre</strong>: Casino / Casual</li>
+                <li><strong>My Role</strong>: Solo Developer</li>
+                <li><strong>Starting Balance</strong>: 1,000 Coins</li>
+                <li><strong>Mobile Support</strong>: Yes</li>
+                <li><strong>Live Link</strong>:
+                  <a href="https://tanmoy34.github.io/Slot-machine-Webgame/" target="_blank">GitHub Pages ↗</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- PROJECT DESCRIPTION -->
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Project Overview</h2>
+              <p>
+                <strong>Lucky Reels</strong> is a fully functional classic 3-reel slot machine built entirely
+                with vanilla HTML, CSS, and JavaScript — no libraries, no game engine. Players start with
+                1,000 coins, choose their bet, and spin to match symbols across the reels. With 9 symbol
+                types, a live paytable, and a 50× jackpot, the game captures the feel of a real casino
+                slot experience in the browser.
+              </p>
+
+              <h3>Key Features</h3>
+              <ul>
+                <li>Classic 3-reel spin mechanic with smooth CSS reel animations</li>
+                <li>9 unique symbols with individual payout multipliers</li>
+                <li>💎 50× Jackpot — the highest-value prize</li>
+                <li>Adjustable bet system (5 to 100 coins per spin)</li>
+                <li>Live Balance, Win amount, and Spin counter HUD</li>
+                <li>Win celebration overlay triggered on successful matches</li>
+                <li>Built-in paytable reference screen</li>
+                <li>Fully responsive — works on desktop and mobile</li>
+              </ul>
+
+              <h3>My Contributions</h3>
+              <ul>
+                <li>Designed the complete slot game logic from scratch in JavaScript</li>
+                <li>Built a weighted symbol randomisation system for fair-play balance</li>
+                <li>Implemented CSS keyframe reel spin animations with staggered timing</li>
+                <li>Created dynamic win detection across all 9 symbol combinations</li>
+                <li>Designed the full UI — machine cabinet, reels, HUD, paytable modal</li>
+                <li>Tuned payout multipliers to maintain engaging but balanced gameplay</li>
+              </ul>
+
+              <h3>Technologies Used</h3>
+              <div class="tech-tags">
+                <span class="badge bg-primary">HTML5</span>
+                <span class="badge bg-primary">CSS3</span>
+                <span class="badge bg-primary">JavaScript</span>
+                <span class="badge bg-primary">CSS Animations</span>
+                <span class="badge bg-primary">GitHub Pages</span>
+              </div>
+            </div>
+
+            <!-- BACK BUTTON -->
+            <div class="portfolio-links mt-3" data-aos="fade-up" data-aos-delay="400">
+              <a href="index.html#portfolio" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i> Back to Portfolio
+              </a>
+            </div>
+
+          </div><!-- /col-lg-4 -->
+
+        </div><!-- /row -->
+      </div><!-- /container -->
+
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background"></footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

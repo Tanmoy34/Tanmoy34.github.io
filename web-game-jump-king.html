@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Jump King Web Edition - Tanmoy Ghatak Portfolio</title>
+  <meta name="description" content="Jump King Web Edition — a browser-based precision platformer built with HTML5 Canvas and JavaScript by Tanmoy Ghatak.">
+  <meta name="keywords" content="jump king, web game, HTML5 canvas, JavaScript, platformer, Tanmoy Ghatak">
+
+  <!-- Favicons -->
+  <link href="assets/img/Profile_img.jpeg" rel="icon">
+  <link href="assets/img/Profile_img.jpeg" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* ── THUMBNAIL CARD ── */
+    .game-thumbnail-card {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      display: block;
+      text-decoration: none;
+    }
+    .game-thumbnail-card img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .game-thumbnail-card:hover img {
+      transform: scale(1.02);
+    }
+    /* hover overlay with play icon */
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .game-thumbnail-card:hover .thumb-overlay {
+      opacity: 1;
+    }
+    .thumb-overlay i {
+      font-size: 4.5rem;
+      color: #fff;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+    }
+
+    /* ── PLAY NOW BUTTON ── */
+    .play-now-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px 20px;
+      background: #0d6efd;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.4px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .play-now-btn:hover {
+      background: #0b5ed7;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(13, 110, 253, 0.35);
+    }
+    .play-now-btn i { font-size: 1.1rem; }
+
+    /* ── HOW TO PLAY CONTROLS ── */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .control-block {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .control-block h5 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #0d6efd;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .key-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 0;
+    }
+    .key {
+      font-family: monospace;
+      font-size: 0.68rem;
+      padding: 3px 7px;
+      background: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      color: #333;
+      white-space: nowrap;
+      min-width: 42px;
+      text-align: center;
+      box-shadow: 0 2px 0 #adb5bd;
+    }
+    .key-desc {
+      font-size: 0.8rem;
+      color: #555;
+    }
+    .control-note {
+      font-size: 0.72rem;
+      color: #888;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 576px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <!-- ===== SIDEBAR HEADER ===== -->
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile-img">
+      <img src="assets/img/Profile_base.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Tanmoy Ghatak</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/tanmoy-ghatak-b8707a14b/" target="_blank" class="linkedin">
+        <i class="bi bi-linkedin"></i>
+      </a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About Me</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="index.html#portfolio" class="active"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i> On going projects</a></li>
+        <li><a href="index.html#certificates"><i class="bi bi-award navicon"></i> Certificates</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== PAGE TITLE ===== -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Jump King - Web Edition</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Portfolio Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- ===== PORTFOLIO DETAILS SECTION ===== -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+
+          <!-- ══════════ LEFT COLUMN ══════════ -->
+          <div class="col-lg-8">
+
+            <!-- THUMBNAIL — replace src with your actual screenshot -->
+            <a href="https://tanmoy34.github.io/WebGames/" target="_blank" class="game-thumbnail-card">
+              <img
+                src="assets/img/Webgame/Jump_king_Thumbnile.png"
+                alt="Jump King Web Edition - Click to Play">
+              <div class="thumb-overlay">
+                <i class="bi bi-play-circle-fill"></i>
+              </div>
+            </a>
+
+            <!-- PLAY NOW BUTTON -->
+            <a href="https://tanmoy34.github.io/WebGames/" target="_blank" class="play-now-btn">
+              <i class="bi bi-play-fill"></i>
+              Play It Now in Full Tab
+            </a>
+
+            <!-- GAME GOAL NOTE -->
+            <div class="mt-4 p-3" style="border-left: 4px solid #0d6efd; background: #f0f5ff; border-radius: 0 6px 6px 0;">
+              <p class="mb-0 small">
+                <strong>Goal:</strong> Climb to the very top without falling. Your <strong>HEIGHT</strong> and 
+                <strong>FALLS</strong> are tracked live in the game HUD. Reach the summit to trigger the 
+                Victory screen!
+              </p>
+            </div>
+
+            <!-- HOW TO PLAY -->
+            <div class="mt-4">
+              <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 14px;">How to Play</h3>
+              <div class="controls-grid">
+
+                <div class="control-block">
+                  <h5><i class="bi bi-display"></i> Desktop</h5>
+                  <div class="key-row">
+                    <span class="key">← →</span>
+                    <span class="key-desc">Move Left / Right</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">SPACE</span>
+                    <span class="key-desc">Hold to charge jump</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">Release</span>
+                    <span class="key-desc">Execute the jump</span>
+                  </div>
+                  <p class="control-note">Longer hold = higher jump!</p>
+                </div>
+
+                <div class="control-block">
+                  <h5><i class="bi bi-phone"></i> Mobile</h5>
+                  <div class="key-row">
+                    <span class="key">← →</span>
+                    <span class="key-desc">On-screen buttons</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">JUMP</span>
+                    <span class="key-desc">Hold to charge</span>
+                  </div>
+                  <div class="key-row">
+                    <span class="key">Release</span>
+                    <span class="key-desc">Execute the jump</span>
+                  </div>
+                  <p class="control-note">Full mobile support!</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- /col-lg-8 -->
+
+          <!-- ══════════ RIGHT SIDEBAR ══════════ -->
+          <div class="col-lg-4">
+
+            <!-- PROJECT INFO — identical structure to Bougie Intubation -->
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Category</strong>: Web Game</li>
+                <li><strong>Platform</strong>: Browser (HTML5)</li>
+                <li><strong>Engine</strong>: Vanilla JS + Canvas API</li>
+                <li><strong>Language</strong>: JavaScript</li>
+                <li><strong>Genre</strong>: Precision Platformer</li>
+                <li><strong>My Role</strong>: Solo Developer</li>
+                <li><strong>Mobile Support</strong>: Yes</li>
+                <li><strong>Live Link</strong>:
+                  <a href="https://tanmoy34.github.io/WebGames/" target="_blank">GitHub Pages ↗</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- PROJECT DESCRIPTION — identical structure to Bougie Intubation -->
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Project Overview</h2>
+              <p>
+                A browser-based tribute to the precision platformer genre, built entirely from scratch using
+                vanilla JavaScript and the HTML5 Canvas API — no game engine, no external framework.
+                The core challenge: climb higher and higher without falling, mastering a charge-based jump
+                mechanic that rewards patience and punishes haste.
+              </p>
+
+              <h3>Key Features</h3>
+              <ul>
+                <li>Charge-based jump system — hold longer to jump higher</li>
+                <li>Real-time HEIGHT and FALLS tracker on the HUD</li>
+                <li>Full mobile support with on-screen touch controls</li>
+                <li>Victory screen triggered on reaching the summit</li>
+                <li>In-game Controls and Credits modals</li>
+                <li>Zero dependencies — pure HTML5 / CSS / JavaScript</li>
+              </ul>
+
+              <h3>My Contributions</h3>
+              <ul>
+                <li>Custom physics engine — gravity, charge, and release trajectory</li>
+                <li>Canvas-based renderer with smooth character movement</li>
+                <li>Responsive layout for both desktop and mobile</li>
+                <li>Virtual on-screen joystick and button system for touch input</li>
+                <li>Game state machine: Menu → Playing → Victory</li>
+                <li>Height calculation and fall-count tracking system</li>
+              </ul>
+
+              <h3>Technologies Used</h3>
+              <div class="tech-tags">
+                <span class="badge bg-primary">HTML5</span>
+                <span class="badge bg-primary">CSS3</span>
+                <span class="badge bg-primary">JavaScript</span>
+                <span class="badge bg-primary">Canvas API</span>
+                <span class="badge bg-primary">GitHub Pages</span>
+              </div>
+            </div>
+
+            <!-- BACK BUTTON — identical to Bougie Intubation -->
+            <div class="portfolio-links mt-3" data-aos="fade-up" data-aos-delay="400">
+              <a href="index.html#portfolio" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i> Back to Portfolio
+              </a>
+            </div>
+
+          </div><!-- /col-lg-4 -->
+
+        </div><!-- /row -->
+      </div><!-- /container -->
+
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background"></footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
