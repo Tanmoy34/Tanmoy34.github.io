@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Star Blaster — 2D Space Shooter - Tanmoy Ghatak Portfolio</title>
+  <meta name="description" content="A 2D space shooter built in Unity with C#. Shoot down enemy planes, survive incoming waves, and chase the highest score before your ship is destroyed.">
+  <meta name="keywords" content="Star Blaster, Unity 2D, C#, space shooter, enemy pathfinder, screen shake, scoring system, coroutines, particle collision, game development">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <div class="profile-img">
+      <img src="assets/img/Profile_base.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Tanmoy Ghatak</h1>
+    </a>
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/tanmoy11ghatak/" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+    </div>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About Me</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="index.html#portfolio" class="active"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i> On going projects</a></li>
+        <li><a href="index.html#certificates"><i class="bi bi-award navicon"></i> Certificates</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Star Blaster — 2D Space Shooter</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Portfolio Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section id="portfolio-details" class="portfolio-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": { "delay": 5000 },
+                  "slidesPerView": "auto",
+                  "pagination": { "el": ".swiper-pagination", "type": "bullets", "clickable": true }
+                }
+              </script>
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide"><img src="assets/img/Star Blaster/1.png" alt="Star Blaster screenshot 1"></div>
+                <div class="swiper-slide"><img src="assets/img/Star Blaster/2.png" alt="Star Blaster screenshot 2"></div>
+                <div class="swiper-slide"><img src="assets/img/Star Blaster/3.png" alt="Star Blaster screenshot 3"></div>
+                <div class="swiper-slide"><img src="assets/img/Star Blaster/4.png" alt="Star Blaster screenshot 4"></div>
+                <div class="swiper-slide"><img src="assets/img/Star Blaster/5.png" alt="Star Blaster screenshot 5"></div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="portfolio-video mt-4">
+              <div class="video-container position-relative">
+                <img src="assets/img/Star Blaster/1.png" alt="Star Blaster Video Thumbnail" class="img-fluid w-100 rounded" id="videoThumbnail" style="cursor: pointer;">
+                <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" id="playButton" style="cursor: pointer;">
+                  <i class="bi bi-play-circle" style="font-size: 4rem; color: white; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));"></i>
+                </div>
+              </div>
+              <div id="videoPlayer" class="mt-3" style="display: none;">
+                <video width="100%" height="auto" controls autoplay muted>
+                  <source src="assets\videos\Start Blaster.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="mt-3 p-3 bg-light border-left-4" style="border-left: 4px solid #0d6efd;"></div>
+            </div>
+
+            <!-- Controls Table -->
+            <div class="portfolio-controls mt-4" data-aos="fade-up" data-aos-delay="150">
+              <h3>Controls</h3>
+              <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                  <tr><th>Action</th><th>Key / Button</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Move Ship</td><td><code>A / D</code> or <code>Arrow Keys</code></td></tr>
+                  <tr><td>Shoot</td><td><code>Space Bar</code></td></tr>
+                  <tr><td>Pause</td><td><code>Escape</code></td></tr>
+                </tbody>
+              </table>
+              <p class="text-muted"><small><i class="bi bi-lightbulb"></i> <strong>Tip:</strong> Learn the enemy flight paths — they follow predictable waypoints, so position yourself ahead of their route!</small></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Category</strong>: Personal Project</li>
+                <li><strong>Platform</strong>: PC (Windows)</li>
+                <li><strong>Engine</strong>: Unity (2D)</li>
+                <li><strong>Languages</strong>: C#</li>
+                <li><strong>Company</strong>: N/A</li>
+                <li><strong>My Role</strong>: Developer</li>
+                <li><strong>Genre</strong>: 2D Space Shooter</li>
+                <li><strong>Team Size</strong>: 1 member (Solo)</li>
+                <li><strong>Inspiration</strong>: Udemy Course</li>
+                <li><strong>GitHub</strong>: <a href="https://github.com/Tanmoy34/starblaster-main" target="_blank">Star-Blaster</a></li>
+              </ul>
+            </div>
+
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Project Overview</h2>
+              <p>
+                Star Blaster is a 2D space shooter built in Unity using C#. You pilot a spaceship at the bottom of the screen, shooting down enemy planes that follow predefined flight paths. Survive the waves and rack up the highest score you can before your ship is destroyed.
+              </p>
+              <p>
+                Built solo as part of my Udemy Unity learning journey, this project was a focused exercise in C# programming fundamentals — arrays, loops (for, foreach, while), and coroutines — combined with satisfying game feel systems like screen shake, particle collision explosions, and a live scoring system.
+              </p>
+
+              <h3>Key Features</h3>
+              <ul>
+                <li><strong>Enemy Pathfinder</strong> — enemies navigate a sequence of waypoints across the screen</li>
+                <li><strong>Particle Collision</strong> — explosion particle effects triggered on bullet-to-enemy impact</li>
+                <li><strong>Screen Shake</strong> — camera shake on player hit for satisfying impact feedback</li>
+                <li><strong>Scoring System</strong> — live score counter that updates as enemies are destroyed</li>
+                <li><strong>Coroutine-driven Spawning</strong> — timed enemy wave spawning with delays between waves</li>
+                <li>Endless waves with increasing enemy pressure</li>
+              </ul>
+
+              <h3>Core Systems</h3>
+              <ul>
+                <li><strong>Arrays</strong> — stores enemy wave configs and waypoint sequences for pathfinding</li>
+                <li><strong>For Loop</strong> — iterates through waypoints and enemy spawn lists</li>
+                <li><strong>Enemy Pathfinder</strong> — waypoint-based movement system where enemies travel between defined positions in sequence</li>
+                <li><strong>Coroutines</strong> — <code>IEnumerator</code> / <code>StartCoroutine</code> for wave spawn timing and movement delays</li>
+                <li><strong>Foreach Loop</strong> — cleanly iterates over active enemy and object collections</li>
+                <li><strong>While Loop</strong> — continuous game state and wave loop logic</li>
+                <li><strong>Particle Collision</strong> — explosion effects triggered by bullet-to-enemy collision events</li>
+                <li><strong>Screen Shake</strong> — camera shake system triggered on player damage</li>
+                <li><strong>Scoring System</strong> — real-time score tracking and HUD display</li>
+              </ul>
+
+              <h3>What I Learned</h3>
+              <ul>
+                <li>Using Arrays to store and access structured game data like waypoints and wave configs</li>
+                <li>Applying For, Foreach, and While loops in real gameplay logic</li>
+                <li>Building a waypoint-based enemy pathfinder from scratch in C#</li>
+                <li>Sequencing timed enemy spawning with Coroutines</li>
+                <li>Triggering particle explosion effects on physics collision events</li>
+                <li>Implementing screen shake for game feel and player feedback</li>
+                <li>Building and displaying a real-time scoring system on the HUD</li>
+              </ul>
+
+              <h3>Technologies Used</h3>
+              <div class="tech-tags">
+                <span class="badge bg-primary">Unity 2D</span>
+                <span class="badge bg-primary">C#</span>
+                <span class="badge bg-primary">Arrays</span>
+                <span class="badge bg-primary">For / Foreach / While Loops</span>
+                <span class="badge bg-primary">Enemy Pathfinder</span>
+                <span class="badge bg-primary">Coroutines</span>
+                <span class="badge bg-primary">Particle Collision</span>
+                <span class="badge bg-primary">Screen Shake</span>
+                <span class="badge bg-primary">Scoring System</span>
+              </div>
+            </div>
+
+            <div class="portfolio-links mt-3" data-aos="fade-up" data-aos-delay="400">
+              <a href="https://github.com/Tanmoy34/starblaster-main" target="_blank" class="btn btn-outline-dark me-2">
+                <i class="bi bi-github"></i> View on GitHub
+              </a>
+              <a href="index.html#portfolio" class="btn btn-primary mt-2">
+                <i class="bi bi-arrow-left"></i> Back to Portfolio
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background"></footer>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playButton = document.getElementById('playButton');
+      const videoThumbnail = document.getElementById('videoThumbnail');
+      const videoPlayer = document.getElementById('videoPlayer');
+      function showVideo() {
+        videoThumbnail.style.display = 'none';
+        playButton.style.display = 'none';
+        videoPlayer.style.display = 'block';
+      }
+      if (playButton) playButton.addEventListener('click', showVideo);
+      if (videoThumbnail) videoThumbnail.addEventListener('click', showVideo);
+    });
+  </script>
+
+</body>
+</html>

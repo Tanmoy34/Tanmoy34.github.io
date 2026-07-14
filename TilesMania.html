@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>TilesMania — 2D Tile Platformer - Tanmoy Ghatak Portfolio</title>
+  <meta name="description" content="A 2D Mario-style tile platformer built in Unity with C#. Dodge obstacles, shoot enemies, and escape through the exit gate across multiple levels.">
+  <meta name="keywords" content="TilesMania, Unity 2D, C#, tilemap, rule tile, singleton, game session, platformer, game development, learning project">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <div class="profile-img">
+      <img src="assets/img/Profile_base.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Tanmoy Ghatak</h1>
+    </a>
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/tanmoy11ghatak/" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+    </div>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About Me</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="index.html#portfolio" class="active"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i> On going projects</a></li>
+        <li><a href="index.html#certificates"><i class="bi bi-award navicon"></i> Certificates</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">TilesMania — 2D Tile Platformer</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Portfolio Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section id="portfolio-details" class="portfolio-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": { "delay": 5000 },
+                  "slidesPerView": "auto",
+                  "pagination": { "el": ".swiper-pagination", "type": "bullets", "clickable": true }
+                }
+              </script>
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide"><img src="assets/img/TilesMania/1.png" alt="TilesMania screenshot 1"></div>
+                <div class="swiper-slide"><img src="assets/img/TilesMania/2.png" alt="TilesMania screenshot 2"></div>
+                <div class="swiper-slide"><img src="assets/img/TilesMania/3.png" alt="TilesMania screenshot 3"></div>
+                <div class="swiper-slide"><img src="assets/img/TilesMania/4.png" alt="TilesMania screenshot 4"></div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="portfolio-video mt-4">
+              <div class="video-container position-relative">
+                <img src="assets/img/TilesMania/5.png" alt="TilesMania Video Thumbnail" class="img-fluid w-100 rounded" id="videoThumbnail" style="cursor: pointer;">
+                <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" id="playButton" style="cursor: pointer;">
+                  <i class="bi bi-play-circle" style="font-size: 4rem; color: white; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));"></i>
+                </div>
+              </div>
+              <div id="videoPlayer" class="mt-3" style="display: none;">
+                <video width="100%" height="auto" controls autoplay muted>
+                  <source src="assets/videos/Tilemania.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="mt-3 p-3 bg-light border-left-4" style="border-left: 4px solid #0d6efd;"></div>
+            </div>
+
+            <!-- Controls Table -->
+            <div class="portfolio-controls mt-4" data-aos="fade-up" data-aos-delay="150">
+              <h3>Controls</h3>
+              <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                  <tr><th>Action</th><th>Key / Button</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Move Left / Right</td><td><code>A / D</code> or <code>Arrow Keys</code></td></tr>
+                  <tr><td>Jump</td><td><code>Space Bar</code></td></tr>
+                  <tr><td>Shoot</td><td><code>Left Mouse Button</code></td></tr>
+                  <tr><td>Pause</td><td><code>Escape</code></td></tr>
+                </tbody>
+              </table>
+              <p class="text-muted"><small><i class="bi bi-lightbulb"></i> <strong>Tip:</strong> Shoot enemies before getting close — some can catch you off guard if you walk into them!</small></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Category</strong>: Personal Project</li>
+                <li><strong>Platform</strong>: PC (Windows)</li>
+                <li><strong>Engine</strong>: Unity (2D)</li>
+                <li><strong>Languages</strong>: C#</li>
+                <li><strong>Company</strong>: N/A</li>
+                <li><strong>My Role</strong>: Developer</li>
+                <li><strong>Genre</strong>: 2D Tile Platformer</li>
+                <li><strong>Team Size</strong>: 1 member (Solo)</li>
+                <li><strong>Inspiration</strong>: Udemy Course</li>
+                <li><strong>GitHub</strong>: <a href="https://github.com/Tanmoy34/TilesMania" target="_blank">TilesMania</a></li>
+              </ul>
+            </div>
+
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Project Overview</h2>
+              <p>
+                TilesMania is a 2D tile-based platformer built in Unity using C#, inspired by classic games like Mario. Navigate through grid-built levels, avoid traps, shoot enemies in your way, and find the exit gate to advance to the next stage.
+              </p>
+              <p>
+                Built solo as part of my Udemy Unity learning journey, this project was a comprehensive dive into Unity's Tilemap system, game architecture patterns like Singleton and Game Session, enemy and bullet scripting, and building functional game UI from scratch.
+              </p>
+
+              <h3>Key Features</h3>
+              <ul>
+                <li>Tile-built levels using Unity's Tilemap and Rule Tile system</li>
+                <li><strong>Enemy AI</strong> — patrol movement, player detection, and death logic</li>
+                <li><strong>Bullet System</strong> — shoot projectiles to defeat enemies</li>
+                <li><strong>Level Loading</strong> — smooth scene transitions on level complete or player death</li>
+                <li><strong>Singleton Game Manager</strong> — persistent manager surviving scene changes</li>
+                <li><strong>Game Session</strong> — carries player lives and score across all levels</li>
+                <li>Full Unity UI — HUD (score, lives) and game over / menu screens</li>
+              </ul>
+
+              <h3>Core Systems</h3>
+              <ul>
+                <li><strong>Sorting Layers</strong> — controls render order for backgrounds, tiles, characters, and UI</li>
+                <li><strong>Tilemap & Rule Tile</strong> — grid-based level design with automatic context-aware tile placement</li>
+                <li><strong>Enemy Script</strong> — patrol, detect, and death behaviour written in C#</li>
+                <li><strong>Bullet Logic</strong> — projectile spawning, direction, travel, and collision destruction</li>
+                <li><strong>Level Loading</strong> — scene management for next level and restart on death</li>
+                <li><strong>Singleton</strong> — single persistent GameManager instance across all scenes</li>
+                <li><strong>Game Session</strong> — persistent object tracking lives and score between levels</li>
+                <li><strong>Unity UI</strong> — HUD, main menu, and game over screens</li>
+              </ul>
+
+              <h3>What I Learned</h3>
+              <ul>
+                <li>Designing tile-based levels efficiently using Tilemap and Rule Tiles</li>
+                <li>Managing render depth correctly with Sorting Layers</li>
+                <li>Writing enemy patrol AI and bullet projectile logic in C#</li>
+                <li>Implementing the Singleton pattern for persistent game managers</li>
+                <li>Using a Game Session object to carry state across multiple scene loads</li>
+                <li>Building complete UI flows — HUD, menus, and game over screens with Unity UI</li>
+              </ul>
+
+              <h3>Technologies Used</h3>
+              <div class="tech-tags">
+                <span class="badge bg-primary">Unity 2D</span>
+                <span class="badge bg-primary">C#</span>
+                <span class="badge bg-primary">Tilemap</span>
+                <span class="badge bg-primary">Rule Tile</span>
+                <span class="badge bg-primary">Sorting Layers</span>
+                <span class="badge bg-primary">Singleton</span>
+                <span class="badge bg-primary">Game Session</span>
+                <span class="badge bg-primary">Unity UI</span>
+              </div>
+            </div>
+
+            <div class="portfolio-links mt-3" data-aos="fade-up" data-aos-delay="400">
+              <a href="https://github.com/Tanmoy34/TilesMania" target="_blank" class="btn btn-outline-dark me-2">
+                <i class="bi bi-github"></i> View on GitHub
+              </a>
+              <a href="index.html#portfolio" class="btn btn-primary mt-2">
+                <i class="bi bi-arrow-left"></i> Back to Portfolio
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background"></footer>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playButton = document.getElementById('playButton');
+      const videoThumbnail = document.getElementById('videoThumbnail');
+      const videoPlayer = document.getElementById('videoPlayer');
+      function showVideo() {
+        videoThumbnail.style.display = 'none';
+        playButton.style.display = 'none';
+        videoPlayer.style.display = 'block';
+      }
+      if (playButton) playButton.addEventListener('click', showVideo);
+      if (videoThumbnail) videoThumbnail.addEventListener('click', showVideo);
+    });
+  </script>
+
+</body>
+</html>
